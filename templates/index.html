@@ -1,0 +1,35 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>SupplyShadow Sentinel</title>
+<link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+<div class="app-shell">
+  <aside class="sidebar">
+    <div class="brand"><div class="logo">S</div><div><b>SupplyShadow</b><span>Sentinel</span></div></div>
+    <nav><a class="active" href="#dashboard">◈ Dashboard</a><a href="#scanner">⌁ Dependency Scanner</a><a href="#results">▣ Scan Results</a><a href="#about">◉ About Project</a></nav>
+    <div class="side-card"><span class="dot"></span> Intelligence feeds online<div class="muted">PyPI + OSV</div></div>
+  </aside>
+  <main class="main">
+    <header class="topbar"><div><div class="eyebrow">SOFTWARE SUPPLY-CHAIN SECURITY</div><h1>Dependency Risk Console</h1></div><button id="sampleBtn" class="ghost">Load sample</button></header>
+    <section id="dashboard" class="hero-grid">
+      <div class="hero card"><div class="hero-glow"></div><div class="tag">SENTINEL SCAN</div><h2>Find dependency threats<br><em>before they ship.</em></h2><p>Analyze Python dependencies for typosquatting, package availability and known vulnerabilities.</p><button class="primary" onclick="document.getElementById('scanner').scrollIntoView({behavior:'smooth'})">Start security scan →</button></div>
+      <div class="metric card"><span>Total packages</span><strong id="total">—</strong><small>in latest scan</small></div>
+      <div class="metric card danger"><span>High / Critical</span><strong id="danger">—</strong><small>requires attention</small></div>
+      <div class="metric card safe"><span>Low risk</span><strong id="safe">—</strong><small>no immediate flags</small></div>
+    </section>
+    <section id="scanner" class="card scanner">
+      <div class="section-head"><div><div class="tag">01 / INPUT</div><h3>Dependency Scanner</h3><p>Paste a <code>requirements.txt</code> file or list dependencies one per line.</p></div><label class="upload">Upload requirements.txt<input type="file" id="fileInput" accept=".txt,.in"></label></div>
+      <textarea id="requirements" spellcheck="false" placeholder="requests==2.31.0&#10;numpy==1.26.4&#10;requesrs==2.31.0&#10;flask"></textarea>
+      <div class="scan-row"><span id="status">Ready to scan.</span><button class="primary" id="scanBtn">Run full scan</button></div>
+    </section>
+    <section class="pipeline card"><div class="tag">02 / DETECTION PIPELINE</div><div class="steps"><div><b>01</b><span>Parse dependencies</span></div><i>→</i><div><b>02</b><span>Typosquatting</span></div><i>→</i><div><b>03</b><span>PyPI verification</span></div><i>→</i><div><b>04</b><span>OSV vulnerabilities</span></div><i>→</i><div><b>05</b><span>Risk score</span></div></div></section>
+    <section id="results" class="card results"><div class="section-head"><div><div class="tag">03 / FINDINGS</div><h3>Scan Results</h3></div><button class="ghost" id="exportBtn">Export JSON</button></div><div id="empty" class="empty">Run a scan to populate the security findings.</div><div id="tableWrap" class="table-wrap hidden"><table><thead><tr><th>Package</th><th>Version</th><th>Typosquatting</th><th>PyPI</th><th>OSV</th><th>Risk</th><th>Score</th></tr></thead><tbody id="tbody"></tbody></table></div></section>
+    <section id="about" class="about"><div><div class="tag">ABOUT</div><h3>SupplyShadow Sentinel</h3><p>A mini-project prototype for software supply-chain defense. It combines dependency intelligence with typo-similarity analysis and vulnerability feeds to highlight suspicious packages before deployment.</p></div><div class="about-grid"><span>Levenshtein similarity</span><span>PyPI package lookup</span><span>OSV vulnerability API</span><span>Risk classification</span></div></section>
+    <footer>SupplyShadow Sentinel · Mini Project Prototype · Use findings as an aid to security review.</footer>
+  </main>
+</div>
+<script src="/static/app.js"></script>
+</body></html>
